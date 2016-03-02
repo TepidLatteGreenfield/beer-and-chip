@@ -1,5 +1,6 @@
 // Require sql model
 var Guest = require('../models/models').Guest;
+var User = require('../models/models').User;
 
 module.exports = {
   // get all guests from an event
@@ -22,21 +23,29 @@ module.exports = {
 	    });
   },
 
-  // add multiple guests to one event
-  addAll: function(eventID, guests, callback) {
+  // add multiple guests to one event (changed to take in the whole event so we can access the creator ID)
+  addAll: function(event, guests, callback) {
     // Add dummy guest to hold all unassigned items
-    guests.push({name: "Unassigned", EventId: eventID});
+    guests.push({name: "Unassigned", EventId: event.id});
+    // automatically create a guest entry for the event creator
+    var creatorName = "";
+    User.findOne({
+      where: {id:event.UserId}
+    })
+    .then(function (user){
+      creatorName = user.dataValues.displayName;
+      console.log("crnam" ,creatorName);
+      guests.push({name: creatorName, EventId: event.id});
+      for (var i=0; i < guests.length; i++) {
+      	guests[i].EventId = event.id;
+      }
+      Guest
+  	    .bulkCreate(guests)
+  	    .then(function(newGuests) {
+  	  	  callback(newGuests);
+  	    });
+    });
 
-    // Add eventId to all guesets
-    for (var i=0; i < guests.length; i++) {
-    	guests[i].EventId = eventID;
-    }
-
-    Guest
-	    .bulkCreate(guests)
-	    .then(function(newGuests) {
-	  	  callback(newGuests);
-	    });
   },
 
   // update attributes of one guest

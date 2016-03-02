@@ -22,20 +22,20 @@ module.exports = {
       // Add event
       EventQuery.addOne(data.userID, data.event, function(event) {
         // Add event's guests
-        GuestQuery.addAll(event.id, data.guests, function() {
+        GuestQuery.addAll(event, data.guests, function() {
           // Add event's items and assign to guests
           ItemQuery.addAll(event.id, data.items, function() {
             // End response and send nothing back
-            res.send(); 
+            res.send();
           });
-        }); 
+        });
       });
     }
   },
 
   eventDetails: {
     get: function(req, res) {
-      // Pull eventID from request params 
+      // Pull eventID from request params
       var eventID = req.params.eventID;
       var data = {}; // will hold response data
 
@@ -54,7 +54,7 @@ module.exports = {
 
       // check if all queries are done and return data in response
       function checkQueries() {
-        if (Object.keys(data).length === 3) { 
+        if (Object.keys(data).length === 3) {
           res.json(data);
         }
       }

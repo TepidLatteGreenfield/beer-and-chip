@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 module.exports = new Sequelize('BeerAndChip', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
-  
+  port:1036,
   define: {
    timestamps: false
   }
