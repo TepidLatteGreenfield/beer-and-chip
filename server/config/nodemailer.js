@@ -7,12 +7,13 @@ exports.transporter = nodemailer.createTransport({
       pass: 'zygote123'
     }
   });
+  // get account with real domain
 
-exports.createMailOptions = function(receivers, eventDetailsURL) {
+exports.createMailOptions = function(fromDisplay, subjectLine, eventReceivers, emailBody) {
   return {
-    from: '"BeerOrChip" <beerandchip@gmail.com>', // sender address
-    to: receivers, // list of receivers
-    subject: 'Event Information!', // Subject line
-    text: eventDetailsURL
-  }
+    from: fromDisplay, // sender address
+    to: eventReceivers, // list of receivers
+    subject: subjectLine, // Subject line
+    html: emailBody
+  };
 };

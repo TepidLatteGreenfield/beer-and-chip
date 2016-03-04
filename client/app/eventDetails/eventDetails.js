@@ -305,9 +305,9 @@ angular.module('eventDetails', ['eventList'])
   }
 /** EMAIL **/
   // sends unique eventDetails url to all guests
-  $scope.email = function() {
+  $scope.emailInvites = function() {
     var eventID = $cookies.get("eventID");
-    requestFactory.sendEmails(eventID);
+    requestFactory.sendInvites(eventID);
   };
 
 /** INITIALIZE ON PAGE LOAD **/
@@ -330,9 +330,9 @@ angular.module('eventDetails', ['eventList'])
     });
   };
 
-  var sendEmails = function(eventID) {
+  var sendInvites = function(eventID) {
     return $http({
-      method: 'GET',
+      method: 'POST',
       url: '/api/email/' + eventID
     });
   };
@@ -380,7 +380,7 @@ angular.module('eventDetails', ['eventList'])
 
   return {
     getEvents: getEvents,
-    sendEmails: sendEmails,
+    sendInvites: sendInvites,
     updateItem: updateItem,
     getUserDetails: getUserDetails,
     deleteItem: deleteItem,

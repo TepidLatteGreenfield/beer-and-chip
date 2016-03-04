@@ -14,8 +14,12 @@ router.get('/events/:userID', eventsController.events.get);
 router.post('/events', eventsController.events.post);
 router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 router.delete('/events', eventsController.events.delete);
-
-router.get('/email/:eventID', nodemailerController.get);
+// send initial invite to all guests
+router.post('/email/:eventID', nodemailerController.post);
+// send settleUp emails to all guests
+// router.put('/email/:eventID', nodemailerController.put);
+// // send event cancelled email to all guests
+// router.delete('/email/:eventID', nodemailerController.delete);
 
 router.get('/guests', guestsController.get);
 router.post('/guests', guestsController.post);

@@ -9,7 +9,7 @@ module.exports = {
       res.json(guests);
     });
   },
-
+  // add email call when a guest is invited
   post: function(req, res) {
     var guest = req.body;
     GuestQuery.addOne(guest, function(newGuest) {
@@ -26,7 +26,9 @@ module.exports = {
       res.send();
     });
   },
-
+  // add email call when guest is uninvited
+    // email event creator
+    // email guest saying if you can make it just come back!
   delete: function(req, res) {
     var guestID = req.params.guestID;
     var eventID = req.params.eventID;
