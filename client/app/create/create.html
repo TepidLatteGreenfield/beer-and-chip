@@ -1,17 +1,17 @@
-<!-- 
+<!--
 <style>
 
 
 </style>
 
  -->
-  
+
 
 <!-- Banner is here b/c of problems with keeping clear nav bar showing -->
 <section id="banner2" >
-    <h2>Beer or Chip</h2>
-    <p>everyone makes the party</p>
-</section> 
+    <h2>SettleUp</h2>
+    <p>you worry about having fun, we'll worry about the tab</p>
+</section>
 <!-- Main -->
 <section id="main" class="wrapper">
   <div class="container">
@@ -24,20 +24,20 @@
 
     <div>
       <form novalidate class="event-form" name='createForm'>
-        <label>Event Name:</label> 
+        <label>Event Name:</label>
         <input type="text" ng-model="event.name" name='nameOfEvent' required/>
         <br />
 
-        <label>Event Date:</label> 
+        <label>Event Date:</label>
         <input type="datetime-local" id="exampleInput" name="input" ng-model="event.date"
            placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
         <br />
 
-        <label>Event Location:</label> 
+        <label>Event Location:</label>
         <input type="text" ng-model="event.location" />
         <br />
 
-        <label>Guests:</label> 
+        <label>Guests:</label>
         <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
 
         <div ng-repeat="guest in guests">
@@ -47,7 +47,7 @@
             <input type="button" value="X" ng-click="removeGuest($index)" class="button special small">
           </label>
         </div>
-        
+
         <input ng-click="addGuest()" type="button" class="button alt small" value="Add Guest" style="width:10%">
         <!-- <button ng-click="addGuest()">Add another guest</button> -->
         <br />
@@ -80,4 +80,4 @@
     </div>
 
   </div>
-</section> 
+</section>
